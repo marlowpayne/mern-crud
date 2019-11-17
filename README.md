@@ -2,6 +2,8 @@
 
 A basic CRUD app on the MERN stack
 
+[![CircleCI](https://circleci.com/gh/marlowpayne/mern-crud/tree/master.svg?style=svg)](https://circleci.com/gh/marlowpayne/mern-crud/tree/master)
+
 ## Local Development
 
 ### Requirements
