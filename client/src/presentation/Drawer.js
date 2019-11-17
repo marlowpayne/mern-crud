@@ -10,14 +10,15 @@ import {
   SwipeableDrawer
 } from "@material-ui/core";
 import {
+  Contacts as ContactsIcon,
   ChevronLeft as ChevronLeftIcon,
-  Create as CreateIcon,
+  PersonAdd as PersonAddIcon,
   Input as InputIcon,
   PowerOff as PowerIcon
 } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { ROUTE_LOGIN, ROUTE_REGISTER } from "../constants";
+import { ROUTE_LOGIN, ROUTE_REGISTER, ROUTE_USERS } from "../constants";
 
 const useStyles = makeStyles(theme => ({
   linkedButton: {
@@ -58,6 +59,20 @@ export const Drawer = ({ setDrawerState, open, isUserAuthed, onLogout }) => {
     </ListItem>
   );
 
+  const UsersLink = (
+    <Link to={ROUTE_USERS} className={classes.linkedButton}>
+      <ListItem button key={ROUTE_USERS}>
+        <ListItemIcon>
+          <>
+            {" "}
+            <ContactsIcon />{" "}
+          </>
+        </ListItemIcon>
+        <ListItemText primary="User Management" />
+      </ListItem>
+    </Link>
+  );
+
   return (
     <SwipeableDrawer
       open={open}
@@ -81,13 +96,14 @@ export const Drawer = ({ setDrawerState, open, isUserAuthed, onLogout }) => {
               <ListItemIcon>
                 <>
                   {" "}
-                  <CreateIcon />{" "}
+                  <PersonAddIcon />{" "}
                 </>
               </ListItemIcon>
               <ListItemText primary="Register" />
             </ListItem>
           </Link>
 
+          {isUserAuthed ? UsersLink : null}
           {isUserAuthed ? LogoutLink : LoginLink}
         </List>
       </div>

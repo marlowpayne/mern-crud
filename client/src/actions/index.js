@@ -55,7 +55,9 @@ export const registerNewUser = newUser => dispatch =>
       dispatch(
         enqueueSnackbar("error", "Something went wrong with registration")
       );
-      dispatch(setErrors(err.response.data));
+      if (err.response && err.response.data) {
+        dispatch(setErrors(err.response.data));
+      }
     });
 
 export const login = user => dispatch =>
@@ -72,7 +74,9 @@ export const login = user => dispatch =>
     })
     .catch(err => {
       dispatch(enqueueSnackbar("error", "Something went wrong with login"));
-      dispatch(setErrors(err.response.data));
+      if (err.response && err.response.data) {
+        dispatch(setErrors(err.response.data));
+      }
     });
 
 export const logout = () => dispatch => {

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Typography, Button } from "@material-ui/core";
 import { styled, withTheme } from "@material-ui/core/styles";
 
-import { ROUTE_HOME } from "../constants";
+import { ROUTE_HOME, ROUTE_REGISTER, ROUTE_LOGIN } from "../constants";
 
 const StyledLinkButton = styled(Link)({
   textDecoration: "none",
@@ -27,8 +27,8 @@ export class Landing extends React.PureComponent {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.isUserAuthed) {
+  componentDidUpdate() {
+    if (this.props.isUserAuthed) {
       this.props.history.push(ROUTE_HOME);
     }
   }
@@ -42,10 +42,10 @@ export class Landing extends React.PureComponent {
           A basic CRUD app built on the MERN stack
         </Typography>
 
-        <StyledLinkButton to="/register">
+        <StyledLinkButton to={ROUTE_REGISTER}>
           <StyledButton variant="contained">Register</StyledButton>
         </StyledLinkButton>
-        <StyledLinkButton to="/login">
+        <StyledLinkButton to={ROUTE_LOGIN}>
           <StyledButton variant="contained">Login</StyledButton>
         </StyledLinkButton>
       </>

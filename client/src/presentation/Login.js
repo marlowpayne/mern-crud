@@ -42,8 +42,8 @@ export class Login extends React.PureComponent {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.isUserAuthed) {
+  componentDidUpdate() {
+    if (this.props.isUserAuthed) {
       this.props.history.push(ROUTE_HOME);
     }
   }
