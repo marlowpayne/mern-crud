@@ -1,7 +1,9 @@
 import React from "react";
 import { Typography, Button } from "@material-ui/core";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
+
+import { ROUTE_REGISTER, ROUTE_USERS } from "../constants";
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -25,11 +27,16 @@ export const Home = ({ email }) => {
         <Typography variant="button">{email}</Typography>{" "}
       </Typography>
 
-      <NavLink to="/register" className={classes.linkedButton}>
+      <Link to={ROUTE_REGISTER} className={classes.linkedButton}>
         <Button variant="contained" className={classes.button}>
           Register a new user
         </Button>
-      </NavLink>
+      </Link>
+      <Link to={ROUTE_USERS} className={classes.linkedButton}>
+        <Button variant="contained" className={classes.button}>
+          User Management
+        </Button>
+      </Link>
     </>
   );
 };

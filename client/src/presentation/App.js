@@ -10,7 +10,8 @@ import {
   ROUTE_LANDING,
   ROUTE_LOGIN,
   ROUTE_REGISTER,
-  ROUTE_HOME
+  ROUTE_HOME,
+  ROUTE_USERS
 } from "../constants";
 import { store } from "../store";
 import { setAuthToken } from "../utils";
@@ -24,6 +25,7 @@ import { Landing } from "../containers/Landing";
 import { Home } from "../containers/Home";
 import { Drawer } from "../containers/Drawer";
 import { Notistack } from "../containers/Notistack";
+import { Users } from "../presentation/Users";
 
 const jwtToken = localStorage.getItem("jwtToken");
 if (jwtToken) {
@@ -72,6 +74,7 @@ export const App = () => {
             <Route exact path={ROUTE_REGISTER} component={Register} />
             <Route exact path={ROUTE_LOGIN} component={Login} />
             <AuthedRoute exact path={ROUTE_HOME} component={Home} />
+            <AuthedRoute exact path={ROUTE_USERS} component={Users} />
           </main>
         </Router>
       </SnackbarProvider>

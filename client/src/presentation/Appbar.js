@@ -5,6 +5,8 @@ import { AppBar, Toolbar, IconButton, Typography } from "@material-ui/core";
 import { Menu as MenuIcon } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 
+import { ROUTE_LANDING } from "../constants";
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
@@ -47,7 +49,7 @@ export const Appbar = ({
           </IconButton>
 
           <div className={classes.title} role="presentation">
-            <Link to="/" className={classes.linkedButton}>
+            <Link to={ROUTE_LANDING} className={classes.linkedButton}>
               <Typography variant="h6">MERN CRUD</Typography>
             </Link>
           </div>
