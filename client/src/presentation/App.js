@@ -25,7 +25,7 @@ import { Landing } from "../containers/Landing";
 import { Home } from "../containers/Home";
 import { Drawer } from "../containers/Drawer";
 import { Notistack } from "../containers/Notistack";
-import { Users } from "../presentation/Users";
+import { Users } from "../containers/Users";
 
 const jwtToken = localStorage.getItem("jwtToken");
 if (jwtToken) {

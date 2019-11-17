@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import {
@@ -45,6 +46,10 @@ const Loading = styled(withTheme(CircularProgress))(props => ({
 }));
 
 export class Users extends React.PureComponent {
+  static propTypes = {
+    currentUserEmail: PropTypes.string.isRequired
+  };
+
   constructor() {
     super();
     this.state = {
@@ -54,7 +59,7 @@ export class Users extends React.PureComponent {
     };
   }
 
-  componentDidMount() {
+  refreshUserData = () => {
     axios
       .get(`${SERVER_HOST}/users`)
       .then(res =>
@@ -69,10 +74,31 @@ export class Users extends React.PureComponent {
           error: err.message
         })
       );
+  };
+
+  componentDidMount() {
+    this.refreshUserData();
   }
+
+  deleteUser = id => {
+    this.setState({
+      isLoading: true
+    });
+
+    axios
+      .delete(`${SERVER_HOST}/users/delete/${id}`)
+      .then(res => this.refreshUserData())
+      .catch(err =>
+        this.setState({
+          isLoading: false,
+          error: err.message
+        })
+      );
+  };
 
   render() {
     const { isLoading, users, error } = this.state;
+    const { currentUserEmail } = this.props;
 
     const UserTable = (
       <>
@@ -90,7 +116,16 @@ export class Users extends React.PureComponent {
                 <TableRow key={user._id}>
                   <TableCell>{user._id}</TableCell>
                   <TableCell>{user.email}</TableCell>
-                  <TableCell>TBD</TableCell>
+                  <TableCell>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={() => this.deleteUser(user._id)}
+                      disabled={user.email === currentUserEmail}
+                    >
+                      Delete
+                    </Button>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
