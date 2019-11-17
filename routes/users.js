@@ -27,6 +27,19 @@ router.get(
   }
 );
 
+// @route DELETE users/delete/:id
+// @desc Delete an existing user by ID
+// @access Private
+router.delete(
+  "/delete/:id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    User.findById(req.params.id).then(user =>
+      user.remove().then(() => res.json({ success: true }))
+    );
+  }
+);
+
 // @route POST users/register
 // @desc Register a new user
 // @access Public
